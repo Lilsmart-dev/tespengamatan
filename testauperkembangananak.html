@@ -1,247 +1,124 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tes Pengamatan Perkembangan Anak</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            text-align: center;
-        }
-        .brand-info {
-            text-align: center;
-            font-size: 14px;
-            margin: 10px 0;
-        }
-        .brand-info p {
-            margin: 5px 0;
-        }
-        .brand-info strong {
-            font-size: 20px;
-            color: #000;
-        }
-        .brand-info i {
-            font-size: 16px;
-            color: #000;
-            font-style: italic;
-        }
-        .container {
-            width: 80%;
-            margin: 20px auto;
-        }
-        h2 {
-            color: #4CAF50;
-        }
-        .question {
-            margin: 10px 0;
-        }
-        .question label {
-            font-size: 16px;
-        }
-        .question input[type="checkbox"] {
-            margin-right: 10px;
-        }
-        .btn-submit {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 20px;
-        }
-        .btn-submit:hover {
-            background-color: #45a049;
-        }
-        .footer {
-            text-align: center;
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 0;
-            margin-top: 20px;
-        }
-        .result {
-            background-color: #e0ffe0;
-            padding: 20px;
-            margin-top: 20px;
-            border: 2px solid #4CAF50;
-            border-radius: 5px;
-            display: none;
-        }
-        .recommendation {
-            background-color: #f9f9f9;
-            border: 1px solid #ffb300;
-            padding: 15px;
-            margin-top: 20px;
-            display: none;
-            border-radius: 5px;
-        }
-        .comment-box {
-            width: 100%;
-            margin-top: 10px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌿 Temani Tumbuh - Tes Pengamatan Perkembangan Anak</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f8f9fa;
+      color: #333;
+      font-size: 1.8rem;
+    }
+    header {
+      background-color: #e3f6f5;
+      padding: 6rem 3rem;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 4.5rem;
+    }
+    header p {
+      font-size: 2.4rem;
+      max-width: 1000px;
+      margin: 2rem auto 0;
+    }
+    .container {
+      padding: 6rem 3rem;
+      max-width: 1600px;
+      margin: auto;
+    }
+    label {
+      display: block;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+    }
+    select, textarea {
+      font-size: 2rem;
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      width: 100%;
+      max-width: 400px;
+    }
+    .btn-submit {
+      margin-top: 3rem;
+      width: 100%;
+      padding: 2rem;
+      font-size: 2rem;
+      background-color: #38b6ff;
+      color: white;
+      border: none;
+      border-radius: 16px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .btn-submit:hover {
+      background-color: #2597d5;
+    }
+    .result, .recommendation {
+      margin-top: 4rem;
+      padding: 4rem;
+      border-radius: 24px;
+      font-size: 2rem;
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .result {
+      background: #e6f7ff;
+      border-left: 10px solid #38b6ff;
+    }
+    .recommendation {
+      background: #fff8e1;
+      border-left: 10px solid #ffc107;
+    }
+    .footer {
+      margin-top: 4rem;
+      text-align: center;
+      font-style: italic;
+      font-size: 1.8rem;
+      color: #666;
+    }
+    .premium-link {
+      text-align: center;
+      margin-top: 3rem;
+    }
+    .premium-link a {
+      display: inline-block;
+      background-color: #ffc107;
+      padding: 1.5rem 3rem;
+      border-radius: 16px;
+      color: #333;
+      font-size: 2rem;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .premium-link a:hover {
+      background-color: #e0a800;
+    }
+  </style>
 </head>
 <body>
+  <header>
+    <h1>🌿 Temani Tumbuh - Tes Pengamatan Perkembangan Anak</h1>
+    <p>Gunakan tes ini untuk mengamati apakah perkembangan anak Anda sesuai dengan tahapan usianya atau mengalami keterlambatan.</p>
+  </header>
 
-<header>
-    <h1>Tes Pengamatan Perkembangan Anak</h1>
-    <p>Gunakan tes ini untuk mengamati kemampuan anak berdasarkan usia mereka.</p>
-</header>
+  <div class="container">
+    <!-- Konten Form dan Hasil akan dimasukkan di sini melalui JavaScript -->
 
-<div class="brand-info">
-    <p><strong>LilSmart Digital</strong></p>
-    <p><i>Bantu orangtua belajar bersama anak di rumah dengan mudah</i></p>
-</div>
-
-<div class="container">
-    <h2>Masukkan Usia Anak</h2>
-    <div class="question">
-        <label for="age">Usia Anak:</label>
-        <select id="age" onchange="loadQuestions()">
-            <option value="2">2 Tahun</option>
-            <option value="3">3 Tahun</option>
-            <option value="4">4 Tahun</option>
-            <option value="5">5 Tahun</option>
-            <option value="6">6 Tahun</option>
-            <option value="7">7 Tahun</option>
-        </select>
+    <div class="footer">
+      💬 Semua tes kami gratis dan bisa langsung diisi. Tapi kalau kamu ingin temani tumbuh anak setiap hari — kami siap bantu.
     </div>
 
-    <div id="questions"></div>
-
-    <div class="question">
-        <label for="noneAbility">
-            <input type="checkbox" id="noneAbility">
-            Anak tidak memiliki semua kemampuan di atas
-        </label>
+    <div class="premium-link">
+      <a href="/premium.html" target="_blank">🔓 Coba Versi Premium</a>
     </div>
-
-    <button class="btn-submit" onclick="submitForm()">Kirim Pengamatan</button>
-
-    <div class="result" id="result">
-        <h3>Kesimpulan Pengamatan:</h3>
-        <p id="result-text"></p>
-    </div>
-
-    <div class="recommendation" id="recommendation-box">
-        <h4>Penting untuk diperhatikan:</h4>
-        <p>Jika anak belum mencapai tahapan yang diharapkan pada usia ini, disarankan untuk mengamati lebih lanjut perkembangan anak. Ini bisa menjadi tanda bahwa anak memerlukan lebih banyak <strong>stimulasi</strong> atau <strong>intervensi</strong>. Kami menyarankan untuk berkonsultasi dengan <strong>psikolog anak</strong> atau <strong>dokter spesialis perkembangan anak</strong>.</p>
-        <label for="comment">Tuliskan pengamatan atau komentar tentang anak Anda:</label>
-        <textarea id="comment" class="comment-box" rows="4" placeholder="Masukkan komentar atau pengamatan Anda di sini..."></textarea>
-    </div>
-</div>
-
-<div class="footer">
-    <p>© 2025 LilSmart Digital. Semua hak cipta dilindungi.</p>
-</div>
-
-<script>
-    const questionsData = {
-        2: [
-            { question: "Anak dapat menyelesaikan puzzle dengan 4-6 potongan?", id: "q1" },
-            { question: "Anak bisa menyebutkan 2-3 kata dalam satu kalimat?", id: "q2" },
-            { question: "Anak bisa menyusun menara dari 4-6 balok?", id: "q3" },
-            { question: "Anak mengenali 2-3 benda dengan nama?", id: "q4" },
-        ],
-        3: [
-            { question: "Anak dapat menyelesaikan puzzle dengan 6-8 potongan?", id: "q1" },
-            { question: "Anak bisa mengenali beberapa huruf atau angka?", id: "q2" },
-            { question: "Anak bisa menggambar bentuk sederhana (misalnya lingkaran)?", id: "q3" },
-            { question: "Anak bisa mengucapkan kalimat 3-4 kata?", id: "q4" },
-        ],
-        4: [
-            { question: "Anak dapat menyelesaikan puzzle dengan 10-12 potongan?", id: "q1" },
-            { question: "Anak bisa menyebutkan nama benda dalam gambar?", id: "q2" },
-            { question: "Anak dapat menggambar bentuk lebih rumit (misalnya rumah)?", id: "q3" },
-            { question: "Anak dapat berbicara dengan kalimat 4-5 kata?", id: "q4" },
-        ],
-        5: [
-            { question: "Anak dapat menyelesaikan puzzle dengan 15-20 potongan?", id: "q1" },
-            { question: "Anak bisa mengurutkan benda berdasarkan warna, bentuk, atau ukuran?", id: "q2" },
-            { question: "Anak dapat menggambar benda dengan proporsi (misalnya manusia dengan kepala, badan, tangan)?", id: "q3" },
-            { question: "Anak dapat berbicara dengan kalimat yang jelas dan runtut?", id: "q4" },
-        ],
-        6: [
-            { question: "Anak dapat menyelesaikan puzzle dengan 20 potongan?", id: "q1" },
-            { question: "Anak dapat menggambar benda dengan detail (misalnya pohon, rumah)?", id: "q2" },
-            { question: "Anak dapat mengenali dan menyebutkan beberapa kata yang lebih kompleks?", id: "q3" },
-            { question: "Anak dapat berbicara dalam kalimat panjang yang memiliki struktur?", id: "q4" },
-        ],
-        7: [
-            { question: "Anak dapat menyelesaikan puzzle dengan lebih dari 20 potongan?", id: "q1" },
-            { question: "Anak dapat mengenali dan membaca beberapa kata sederhana?", id: "q2" },
-            { question: "Anak dapat menggambar dengan proporsi lebih baik dan detail?", id: "q3" },
-            { question: "Anak dapat berbicara dalam kalimat panjang dan lebih kompleks?", id: "q4" },
-        ]
-    };
-
-    function loadQuestions() {
-        const age = parseInt(document.getElementById("age").value);
-        const questionsContainer = document.getElementById("questions");
-        questionsContainer.innerHTML = '';
-        const questions = questionsData[age];
-
-        questions.forEach(q => {
-            const div = document.createElement("div");
-            div.classList.add("question");
-            div.innerHTML = `
-                <label><input type="checkbox" id="${q.id}"> ${q.question}</label>
-            `;
-            questionsContainer.appendChild(div);
-        });
-
-        document.getElementById("result").style.display = "none";
-        document.getElementById("recommendation-box").style.display = "none";
-        document.getElementById("comment").value = "";
-    }
-
-    function submitForm() {
-        const age = parseInt(document.getElementById("age").value);
-        const questions = questionsData[age];
-        let score = 0;
-        const totalQuestions = questions.length;
-        const missedSkills = document.getElementById("noneAbility").checked;
-
-        questions.forEach(q => {
-            if (document.getElementById(q.id).checked) {
-                score++;
-            }
-        });
-
-        const percentage = (score / totalQuestions) * 100;
-        let resultText = "";
-        const resultBox = document.getElementById("result");
-        const recommendationBox = document.getElementById("recommendation-box");
-
-        if (missedSkills) {
-            resultText = "Perkembangan anak mungkin belum mencakup semua kemampuan yang diharapkan pada usia ini.";
-            recommendationBox.style.display = "block";
-        } else if (percentage <= 30) {
-            resultText = "Perkembangan anak mungkin sedikit tertinggal dibandingkan dengan anak seusianya.";
-            recommendationBox.style.display = "block";
-        } else if (percentage <= 60) {
-            resultText = "Perkembangan anak sesuai dengan usia.";
-            recommendationBox.style.display = "none";
-        } else {
-            resultText = "Perkembangan anak lebih cepat dari usia mereka.";
-            recommendationBox.style.display = "none";
-        }
-
-        document.getElementById("result-text").textContent = resultText;
-        resultBox.style.display = "block";
-    }
-</script>
-
+  </div>
 </body>
 </html>
