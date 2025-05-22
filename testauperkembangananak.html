@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tes Pengamatan Perkembangan Anak</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        /* Styling untuk Brand dan Tagline */
+        .brand-info {
+            text-align: center;
+            font-size: 14px;
+            margin: 10px 0;
+        }
+        .brand-info p {
+            margin: 5px 0;
+        }
+        .brand-info strong {
+            font-size: 20px;
+            color: #000;  /* Warna hitam untuk nama brand */
+        }
+        .brand-info i {
+            font-size: 16px;
+            color: #000;  /* Warna hitam untuk tagline */
+            font-style: italic; /* Membuat tagline miring */
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+        }
+        h2 {
+            color: #4CAF50;
+        }
+        .question {
+            margin: 10px 0;
+        }
+        .question label {
+            font-size: 16px;
+        }
+        .question input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        .btn-submit {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .btn-submit:hover {
+            background-color: #45a049;
+        }
+        .footer {
+            text-align: center;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+        .result {
+            background-color: #e0ffe0;
+            padding: 20px;
+            margin-top: 20px;
+            border: 2px solid #4CAF50;
+            border-radius: 5px;
+            display: none;
+        }
+        .recommendation {
+            background-color: #f9f9f9;
+            border: 1px solid #ffb300;
+            padding: 15px;
+            margin-top: 20px;
+            display: none;
+            border-radius: 5px;
+        }
+        .comment-box {
+            display: none;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Tes Pengamatan Perkembangan Anak</h1>
+        <p>Gunakan tes ini untuk mengamati kemampuan anak berdasarkan usia mereka.</p>
+    </header>
+
+    <!-- Brand and Tagline -->
+    <div class="brand-info">
+        <p><strong>LilSmart Digital</strong></p>
+        <p><i>Bantu orangtua belajar bersama anak di rumah dengan mudah</i></p>
+    </div>
+
+    <div class="container">
+        <h2>Masukkan Usia Anak</h2>
+        <div class="question">
+            <label for="age">Usia Anak:</label>
+            <select id="age" onchange="loadQuestions()">
+                <option value="2">2 Tahun</option>
+                <option value="3">3 Tahun</option>
+                <option value="4">4 Tahun</option>
+                <option value="5">5 Tahun</option>
+                <option value="6">6 Tahun</option>
+                <option value="7">7 Tahun</option>
+            </select>
+        </div>
+
+        <div id="questions"></div>
+
+        <div class="question">
+            <label for="noneAbility">Anak tidak memiliki semua kemampuan di atas:</label>
+            <input type="checkbox" id="noneAbility">
+        </div>
+
+        <button class="btn-submit" onclick="submitForm()">Kirim Pengamatan</button>
+
+        <div class="result" id="result">
+            <h3>Kesimpulan Pengamatan:</h3>
+            <p id="result-text"></p>
+        </div>
+
+        <!-- Recommendation Box for Delay -->
+        <div class="recommendation" id="recommendation-box">
+            <h4>Penting untuk diperhatikan:</h4>
+            <p>Jika anak belum mencapai tahapan yang diharapkan pada usia ini, disarankan untuk mengamati lebih lanjut perkembangan anak. Ini bisa menjadi tanda bahwa anak memerlukan lebih banyak <strong>stimulasi</strong> atau <strong>intervensi</strong>. Kami menyarankan untuk berkonsultasi dengan <strong>psikolog anak</strong> atau <strong>dokter spesialis perkembangan anak</strong> untuk mendapatkan evaluasi lebih lanjut.</p>
+            <label for="comment">Tuliskan pengamatan atau komentar tentang anak Anda:</label>
+            <textarea id="comment" class="comment-box" rows="4" cols="50" placeholder="Masukkan komentar atau pengamatan Anda di sini..."></textarea>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© 2025 LilSmart Digital. Semua hak cipta dilindungi.</p>
+    </div>
+
+    <script>
+        const questionsData = {
+            2: [
+                { question: "Anak dapat menyelesaikan puzzle dengan 4-6 potongan?", id: "cognitive1" },
+                { question: "Anak bisa menyebutkan 2-3 kata dalam satu kalimat?", id: "cognitive2" },
+                { question: "Anak bisa menyusun menara dari 4-6 balok?", id: "cognitive3" },
+                { question: "Anak mengenali 2-3 benda dengan nama?", id: "cognitive4" },
+            ],
+            3: [
+                { question: "Anak dapat menyelesaikan puzzle dengan 6-8 potongan?", id: "cognitive1" },
+                { question: "Anak bisa mengenali beberapa huruf atau angka?", id: "cognitive2" },
+                { question: "Anak bisa menggambar bentuk sederhana (misalnya lingkaran)?", id: "cognitive3" },
+                { question: "Anak bisa mengucapkan kalimat 3-4 kata?", id: "cognitive4" },
+            ],
+            4: [
+                { question: "Anak dapat menyelesaikan puzzle dengan 10-12 potongan?", id: "cognitive1" },
+                { question: "Anak bisa menyebutkan nama benda dalam gambar?", id: "cognitive2" },
+                { question: "Anak dapat menggambar bentuk lebih rumit (misalnya rumah)?", id: "cognitive3" },
+                { question: "Anak dapat berbicara dengan kalimat 4-5 kata?", id: "cognitive4" },
+            ],
+            5: [
+                { question: "Anak dapat menyelesaikan puzzle dengan 15-20 potongan?", id: "cognitive1" },
+                { question: "Anak bisa mengurutkan benda berdasarkan warna, bentuk, atau ukuran?", id: "cognitive2" },
+                { question: "Anak dapat menggambar benda dengan proporsi (misalnya manusia dengan kepala, badan, tangan)?", id: "cognitive3" },
+                { question: "Anak dapat berbicara dengan kalimat yang jelas dan runtut?", id: "cognitive4" },
+            ],
+            6: [
+                { question: "Anak dapat menyelesaikan puzzle dengan 20 potongan?", id: "cognitive1" },
+                { question: "Anak dapat menggambar benda dengan detail (misalnya pohon, rumah)?", id: "cognitive2" },
+                { question: "Anak dapat mengenali dan menyebutkan beberapa kata yang lebih kompleks?", id: "cognitive3" },
+                { question: "Anak dapat berbicara dalam kalimat panjang yang memiliki struktur?", id: "cognitive4" },
+            ],
+            7: [
+                { question: "Anak dapat menyelesaikan puzzle dengan lebih dari 20 potongan?", id: "cognitive1" },
+                { question: "Anak dapat mengenali dan membaca beberapa kata sederhana?", id: "cognitive2" },
+                { question: "Anak dapat menggambar dengan proporsi lebih baik dan detail?", id: "cognitive3" },
+                { question: "Anak dapat berbicara dalam kalimat panjang dan lebih kompleks?", id: "cognitive4" },
+            ]
+        };
+
+        function loadQuestions() {
+            const age = parseInt(document.getElementById("age").value);
+            const questionsContainer = document.getElementById("questions");
+            questionsContainer.innerHTML = ''; // Reset questions
+            const questions = questionsData[age];
+            
+            questions.forEach(q => {
+                const div = document.createElement("div");
+                div.classList.add("question");
+                div.innerHTML = `
+                    <label for="${q.id}">${q.question}</label>
+                    <input type="checkbox" id="${q.id}">
+                `;
+                questionsContainer.appendChild(div);
+            });
+        }
+
+        function submitForm() {
+            const age = parseInt(document.getElementById("age").value);
+            const questions = questionsData[age];
+            let score = 0;
+            const totalQuestions = questions.length;
+            let missedSkills = document.getElementById("noneAbility").checked;
+
+            questions.forEach(q => {
+                if (document.getElementById(q.id).checked) {
+                    score++;
+                }
+            });
+
+            const percentage = (score / totalQuestions) * 100;
+            let resultText = "";
+            let recommendationBox = document.getElementById("recommendation-box");
+            let commentBox = document.getElementById("comment");
+
+            // Handle result based on score and missed skills
+            if (missedSkills) {
+                resultText = "Perkembangan anak mungkin belum mencakup semua kemampuan yang diharapkan pada usia ini. ";
+                recommendationBox.style.display = "block"; // Show recommendation box
+                commentBox.style.display = "block"; // Allow user to add comments
+            } else if (percentage <= 30) {
+                resultText = "Perkembangan anak mungkin sedikit tertinggal dibandingkan dengan anak seusianya. ";
+                recommendationBox.style.display = "block"; // Show recommendation box
+                commentBox.style.display = "block"; // Allow user to add comments
+            } else if (percentage <= 60) {
+                resultText = "Perkembangan anak sesuai dengan usia. ";
+            } else {
+                resultText = "Perkembangan anak lebih cepat dari usia mereka. ";
+                recommendationBox.style.display = "none"; // Hide recommendation box
+            }
+
+            // Show results
+            document.getElementById("result-text").textContent = resultText;
+            document.getElementById("result").style.display = "block";
+        }
+
+        window.onload = loadQuestions;
+    </script>
+</body>
+</html>
