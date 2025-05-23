@@ -1,55 +1,72 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>🌿 Temani Tumbuh - Tes Pengamatan Perkembangan Anak</title>
   <style>
+    :root {
+      font-size: 62.5%;
+    }
+
     body {
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
       padding: 0;
       background: #f8f9fa;
       color: #333;
-      font-size: 1.8rem;
+      font-size: 1.6rem;
     }
+
     header {
       background-color: #e3f6f5;
-      padding: 6rem 3rem;
+      padding: 4rem 2rem;
       text-align: center;
     }
+
     header h1 {
       margin: 0;
-      font-size: 4.5rem;
+      font-size: 3.6rem;
     }
+
     header p {
-      font-size: 2.4rem;
-      max-width: 1000px;
+      font-size: 2rem;
+      max-width: 900px;
       margin: 2rem auto 0;
     }
+
     .container {
-      padding: 6rem 3rem;
-      max-width: 1600px;
+      padding: 4rem 2rem;
+      max-width: 1000px;
       margin: auto;
     }
+
+    h2 {
+      font-size: 2.4rem;
+      margin-bottom: 2rem;
+    }
+
     label {
       display: block;
       margin-bottom: 2rem;
-      font-size: 2rem;
+      font-size: 1.8rem;
     }
+
     select, textarea {
-      font-size: 2rem;
+      font-size: 1.8rem;
       padding: 1rem;
       border-radius: 8px;
       border: 1px solid #ccc;
       width: 100%;
       max-width: 400px;
+      box-sizing: border-box;
     }
+
     .btn-submit {
       margin-top: 3rem;
       width: 100%;
       padding: 2rem;
-      font-size: 2rem;
+      font-size: 1.8rem;
       background-color: #38b6ff;
       color: white;
       border: none;
@@ -57,49 +74,70 @@
       cursor: pointer;
       font-weight: bold;
     }
+
     .btn-submit:hover {
       background-color: #2597d5;
     }
+
     .result, .recommendation {
       margin-top: 4rem;
       padding: 4rem;
       border-radius: 24px;
-      font-size: 2rem;
-      max-width: 1000px;
-      margin-left: auto;
-      margin-right: auto;
+      font-size: 1.8rem;
     }
+
     .result {
       background: #e6f7ff;
       border-left: 10px solid #38b6ff;
     }
+
     .recommendation {
       background: #fff8e1;
       border-left: 10px solid #ffc107;
     }
+
     .footer {
       margin-top: 4rem;
       text-align: center;
       font-style: italic;
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       color: #666;
     }
+
     .premium-link {
       text-align: center;
       margin-top: 3rem;
     }
+
     .premium-link a {
       display: inline-block;
       background-color: #ffc107;
       padding: 1.5rem 3rem;
       border-radius: 16px;
       color: #333;
-      font-size: 2rem;
+      font-size: 1.8rem;
       font-weight: bold;
       text-decoration: none;
     }
+
     .premium-link a:hover {
       background-color: #e0a800;
+    }
+
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 2.8rem;
+      }
+      header p,
+      label,
+      select,
+      textarea,
+      .btn-submit,
+      .result,
+      .recommendation,
+      .premium-link a {
+        font-size: 1.6rem;
+      }
     }
   </style>
 </head>
@@ -134,12 +172,12 @@
 
     <button class="btn-submit" onclick="submitForm()">Kirim Pengamatan</button>
 
-    <div class="result" id="result">
+    <div class="result" id="result" style="display:none;">
       <h3>Kesimpulan Pengamatan:</h3>
       <p id="result-text"></p>
     </div>
 
-    <div class="recommendation" id="recommendation-box">
+    <div class="recommendation" id="recommendation-box" style="display:none;">
       <h4>Penting untuk diperhatikan:</h4>
       <p>Jika anak belum mencapai tahapan yang diharapkan pada usia ini, disarankan untuk mengamati lebih lanjut perkembangan anak. Ini bisa menjadi tanda bahwa anak memerlukan lebih banyak <strong>stimulasi</strong> atau <strong>intervensi</strong>. Kami menyarankan untuk berkonsultasi dengan <strong>psikolog anak</strong> atau <strong>dokter spesialis perkembangan anak</strong>.</p>
       <label for="comment">Tuliskan pengamatan atau komentar tentang anak Anda:</label>
@@ -151,8 +189,8 @@
     </div>
 
     <div class="premium-link">
-  <a href="https://lilsmart-dev.github.io/premium/premium.html" target="_blank">🔓 Coba Premium Sekarang</a>
-</div>
+      <a href="https://lilsmart-dev.github.io/premium/premium.html" target="_blank">🔓 Coba Premium Sekarang</a>
+    </div>
   </div>
 
   <script>
@@ -201,7 +239,7 @@
       questionsContainer.innerHTML = '';
       const questions = questionsData[age];
 
-      questions.forEach((q, index) => {
+      questions.forEach(q => {
         const div = document.createElement("div");
         div.classList.add("question");
         div.innerHTML = `
