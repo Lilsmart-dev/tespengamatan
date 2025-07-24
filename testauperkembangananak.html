@@ -176,27 +176,32 @@
       <h3>Kesimpulan Pengamatan:</h3>
       <p id="result-text"></p>
     </div>
-
-    <<div class="recommendation" id="recommendation-box" style="display:none;">
-  <h4>Penting untuk diperhatikan:</h4>
+<div class="recommendation" id="recommendation-box" style="display:none;">
+  <h4>🔍 Penting untuk Diperhatikan:</h4>
   <p>
-    Jika anak belum mencapai tahapan yang diharapkan pada usia ini, disarankan untuk mengamati lebih lanjut perkembangan anak. 
-    Ini bisa menjadi tanda bahwa anak memerlukan lebih banyak <strong>stimulasi</strong> atau <strong>intervensi</strong>. 
-    Kami menyarankan untuk berdiskusi langsung dengan <strong>konsultan tumbuh kembang</strong> agar bisa disesuaikan dengan kondisi unik anakmu.
+    Jika anak belum mencapai tahapan yang diharapkan pada usia ini, jangan panik. Bisa jadi anak hanya butuh lebih banyak 
+    <strong>stimulasi</strong> atau <strong>pendampingan yang konsisten</strong>. 
+    Kamu bisa berkonsultasi langsung untuk dapat arahan aktivitas yang sesuai dengan kebutuhan unik anakmu.
   </p>
-  <label for="comment">Tuliskan pengamatan atau komentar tentang anak Anda:</label>
-  <textarea id="comment" class="comment-box" rows="4" placeholder="Masukkan komentar atau pengamatan Anda di sini..."></textarea>
+  <label for="comment">📝 Catatan atau Pengamatan Tentang Anak Anda:</label>
+  <textarea id="comment" class="comment-box" rows="4" placeholder="Tulis pengamatan atau hal-hal yang ingin ditanyakan di sini..."></textarea>
 </div>
 
 <div class="footer">
-  💬 Semua tes kami gratis dan bisa langsung diisi. Kalau kamu ingin panduan harian berdasarkan hasil anakmu — kami siap bantu lewat konsultasi.
+  💬 Semua tes kami gratis dan bisa langsung kamu isi. Tapi kalau kamu ingin bantuan menyusun rencana harian — kami siap bantu lewat konsultasi.
 </div>
 
 <div class="consultation-link">
-  <a href="https://wa.me/6289663877770" target="_blank">💬 Konsultasi via WhatsApp Sekarang</a>
+  <a class="btn" href="https://wa.me/6289663877770" target="_blank">💬 Konsultasi Langsung via WhatsApp</a>
 </div>
 
-  <script>
+<script>
+  // Tambahan JS jika ingin menampilkan kotak rekomendasi secara dinamis
+  // Misalnya ketika hasil tes menunjukkan "di bawah ekspektasi"
+  function showRecommendationBox() {
+    document.getElementById('recommendation-box').style.display = 'block';
+  }
+</script>
     const questionsData = {
       2: [
         { question: "Anak dapat menyelesaikan puzzle dengan 4-6 potongan?", id: "q1" },
