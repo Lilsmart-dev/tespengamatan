@@ -26,11 +26,11 @@
 
     header h1 {
       margin: 0;
-      font-size: 4rem; /* diperbesar */
+      font-size: 3.8rem;
     }
 
     header p {
-      font-size: 2.4rem; /* diperbesar */
+      font-size: 2.2rem;
       max-width: 900px;
       margin: 2rem auto 0;
     }
@@ -42,7 +42,7 @@
     }
 
     h2 {
-      font-size: 2.8rem;
+      font-size: 2.6rem;
       margin-bottom: 2rem;
     }
 
@@ -62,7 +62,7 @@
       box-sizing: border-box;
     }
 
-    .btn-submit, button {
+    .btn-submit {
       margin-top: 3rem;
       width: 100%;
       padding: 2rem;
@@ -75,80 +75,55 @@
       font-weight: bold;
     }
 
-    .btn-submit:hover, button:hover {
+    .btn-submit:hover {
       background-color: #2597d5;
     }
 
-    .result, .recommendation {
-      margin-top: 4rem;
-      padding: 4rem;
-      border-radius: 24px;
-      font-size: 1.8rem;
-    }
-
     .result {
+      margin-top: 4rem;
+      padding: 3rem;
+      border-radius: 16px;
       background: #e6f7ff;
       border-left: 10px solid #38b6ff;
+      font-size: 2rem;
     }
 
-    .recommendation {
-      background: #fff8e1;
-      border-left: 10px solid #ffc107;
-    }
-
-    .footer {
-      margin-top: 4rem;
-      text-align: center;
-      font-style: italic;
-      font-size: 1.6rem;
-      color: #666;
-    }
-
-    .premium-link {
-      text-align: center;
+    .recommendation-box {
+      display: none;
       margin-top: 3rem;
-    }
-
-    .premium-link a {
-      display: inline-block;
-      background-color: #ffc107;
-      padding: 1.5rem 3rem;
+      padding: 3rem;
+      background-color: #fff3cd;
+      border-left: 10px solid #ffc107;
       border-radius: 16px;
-      color: #333;
-      font-size: 1.8rem;
-      font-weight: bold;
+      font-size: 2rem;
+    }
+
+    .recommendation-box a {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 1.5rem 3rem;
+      background-color: #25D366;
+      color: #fff;
       text-decoration: none;
+      font-size: 2rem;
+      border-radius: 12px;
+      font-weight: bold;
     }
 
-    .premium-link a:hover {
-      background-color: #e0a800;
-    }
-
-    @media (max-width: 480px) {
-      header h1 {
-        font-size: 2.8rem;
-      }
-      header p,
-      label,
-      select,
-      textarea,
-      .btn-submit,
-      .result,
-      .recommendation,
-      .premium-link a {
-        font-size: 1.6rem;
-      }
+    .recommendation-box a:hover {
+      background-color: #1ebe5d;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>🌿 Temani Tumbuh - Tes Pengamatan Perkembangan Anak</h1>
+    <h1>🌿 Temani Tumbuh</h1>
     <p>Gunakan tes ini untuk mengamati apakah perkembangan anak Anda sesuai dengan tahapan usianya atau mengalami keterlambatan.</p>
   </header>
 
   <div class="container">
     <h2>Evaluasi Tumbuh Kembang Anak</h2>
+
     <label for="age">Usia Anak:</label>
     <select id="age" onchange="loadQuestions()">
       <option value="">Pilih usia</option>
@@ -163,15 +138,16 @@
     <div id="questions"></div>
 
     <label><input type="checkbox" id="noneAbility" /> Anak belum bisa semua</label>
-    <button onclick="submitForm()">Kirim</button>
+
+    <button class="btn-submit" onclick="submitForm()">Kirim</button>
 
     <div id="result" class="result" style="display:none;">
       <p id="result-text"></p>
     </div>
 
-    <div id="recommendation-box" class="recommendation" style="display:none;">
+    <div id="recommendation-box" class="recommendation-box">
       <p>💡 Yuk konsultasi langsung via WhatsApp untuk stimulasi harian yang cocok:</p>
-      <a href="https://wa.me/6281234567890" target="_blank">🔍 Konsultasi Sekarang</a>
+      <a href="https://wa.me/6289663877770" target="_blank">🔍 Konsultasi Sekarang</a>
     </div>
   </div>
 
@@ -189,13 +165,7 @@
         { question: "Anak bisa menggambar bentuk sederhana (misalnya lingkaran)?", id: "q3" },
         { question: "Anak bisa mengucapkan kalimat 3-4 kata?", id: "q4" },
       ],
-      4: [
-        { question: "Anak bisa mengenali warna dasar?", id: "q1" },
-        { question: "Anak bisa melompat dengan kedua kaki?", id: "q2" },
-        { question: "Anak bisa bercerita pendek tentang gambar?", id: "q3" },
-        { question: "Anak bisa mengenakan pakaian sederhana sendiri?", id: "q4" },
-      ],
-      // Tambahkan lebih banyak jika perlu
+      // Tambah data lainnya jika perlu
     };
 
     function loadQuestions() {
@@ -225,8 +195,6 @@
     function submitForm() {
       const age = parseInt(document.getElementById("age").value);
       const questions = questionsData[age];
-      if (!questions) return;
-
       let score = 0;
       const totalQuestions = questions.length;
       const missedSkills = document.getElementById("noneAbility").checked;
@@ -246,7 +214,7 @@
         resultText = "Perkembangan anak mungkin belum mencakup semua kemampuan yang diharapkan pada usia ini.";
         recommendationBox.style.display = "block";
       } else if (percentage <= 30) {
-        resultText = "Perkembangan anak mungkin sedikit tertinggal dibandingkan dengan anak seusianya.";
+        resultText = "Perkembangan anak mungkin sedikit tertinggal dibandingkan anak seusianya.";
         recommendationBox.style.display = "block";
       } else if (percentage <= 60) {
         resultText = "Perkembangan anak sesuai dengan usia.";
