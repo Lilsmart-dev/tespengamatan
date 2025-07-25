@@ -2,7 +2,6 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
- <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>🌿 Temani Tumbuh - Tes Pengamatan Perkembangan Anak</title>
   <style>
@@ -16,7 +15,7 @@
       padding: 0;
       background: #f8f9fa;
       color: #333;
-      font-size: 1.6rem;
+      font-size: 1.8rem;
     }
 
     header {
@@ -27,11 +26,11 @@
 
     header h1 {
       margin: 0;
-      font-size: 3.6rem;
+      font-size: 4rem; /* diperbesar */
     }
 
     header p {
-      font-size: 2rem;
+      font-size: 2.4rem; /* diperbesar */
       max-width: 900px;
       margin: 2rem auto 0;
     }
@@ -43,18 +42,18 @@
     }
 
     h2 {
-      font-size: 2.4rem;
+      font-size: 2.8rem;
       margin-bottom: 2rem;
     }
 
     label {
       display: block;
       margin-bottom: 2rem;
-      font-size: 1.8rem;
+      font-size: 2rem;
     }
 
     select, textarea {
-      font-size: 1.8rem;
+      font-size: 2rem;
       padding: 1rem;
       border-radius: 8px;
       border: 1px solid #ccc;
@@ -63,11 +62,11 @@
       box-sizing: border-box;
     }
 
-    .btn-submit {
+    .btn-submit, button {
       margin-top: 3rem;
       width: 100%;
       padding: 2rem;
-      font-size: 1.8rem;
+      font-size: 2rem;
       background-color: #38b6ff;
       color: white;
       border: none;
@@ -76,7 +75,7 @@
       font-weight: bold;
     }
 
-    .btn-submit:hover {
+    .btn-submit:hover, button:hover {
       background-color: #2597d5;
     }
 
@@ -147,37 +146,35 @@
     <h1>🌿 Temani Tumbuh - Tes Pengamatan Perkembangan Anak</h1>
     <p>Gunakan tes ini untuk mengamati apakah perkembangan anak Anda sesuai dengan tahapan usianya atau mengalami keterlambatan.</p>
   </header>
-  <title>Evaluasi Tumbuh Kembang</title>
-</head>
-<body>
 
-  <!-- Konten HTML -->
-  <h2>Evaluasi Tumbuh Kembang Anak</h2>
-  <label for="age">Usia Anak:</label>
-  <select id="age" onchange="loadQuestions()">
-    <option value="">Pilih usia</option>
-    <option value="2">2 tahun</option>
-    <option value="3">3 tahun</option>
-    <option value="4">4 tahun</option>
-    <option value="5">5 tahun</option>
-    <option value="6">6 tahun</option>
-    <option value="7">7 tahun</option>
-  </select>
+  <div class="container">
+    <h2>Evaluasi Tumbuh Kembang Anak</h2>
+    <label for="age">Usia Anak:</label>
+    <select id="age" onchange="loadQuestions()">
+      <option value="">Pilih usia</option>
+      <option value="2">2 tahun</option>
+      <option value="3">3 tahun</option>
+      <option value="4">4 tahun</option>
+      <option value="5">5 tahun</option>
+      <option value="6">6 tahun</option>
+      <option value="7">7 tahun</option>
+    </select>
 
-  <div id="questions"></div>
-  <label><input type="checkbox" id="noneAbility" /> Anak belum bisa semua</label>
-  <button onclick="submitForm()">Kirim</button>
+    <div id="questions"></div>
 
-  <div id="result" style="display:none;">
-    <p id="result-text"></p>
+    <label><input type="checkbox" id="noneAbility" /> Anak belum bisa semua</label>
+    <button onclick="submitForm()">Kirim</button>
+
+    <div id="result" class="result" style="display:none;">
+      <p id="result-text"></p>
+    </div>
+
+    <div id="recommendation-box" class="recommendation" style="display:none;">
+      <p>💡 Yuk konsultasi langsung via WhatsApp untuk stimulasi harian yang cocok:</p>
+      <a href="https://wa.me/6281234567890" target="_blank">🔍 Konsultasi Sekarang</a>
+    </div>
   </div>
 
-  <div id="recommendation-box" style="display:none;">
-    <p>💡 Yuk konsultasi langsung via WhatsApp untuk stimulasi harian yang cocok:</p>
-    <a href="https://wa.me/6281234567890" target="_blank">🔍 Konsultasi Sekarang</a>
-  </div>
-
-  <!-- Semua kode JS disimpan DI SINI -->
   <script>
     const questionsData = {
       2: [
@@ -192,7 +189,13 @@
         { question: "Anak bisa menggambar bentuk sederhana (misalnya lingkaran)?", id: "q3" },
         { question: "Anak bisa mengucapkan kalimat 3-4 kata?", id: "q4" },
       ],
-      // Tambahkan data lain sesuai usia
+      4: [
+        { question: "Anak bisa mengenali warna dasar?", id: "q1" },
+        { question: "Anak bisa melompat dengan kedua kaki?", id: "q2" },
+        { question: "Anak bisa bercerita pendek tentang gambar?", id: "q3" },
+        { question: "Anak bisa mengenakan pakaian sederhana sendiri?", id: "q4" },
+      ],
+      // Tambahkan lebih banyak jika perlu
     };
 
     function loadQuestions() {
@@ -222,6 +225,8 @@
     function submitForm() {
       const age = parseInt(document.getElementById("age").value);
       const questions = questionsData[age];
+      if (!questions) return;
+
       let score = 0;
       const totalQuestions = questions.length;
       const missedSkills = document.getElementById("noneAbility").checked;
