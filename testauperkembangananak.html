@@ -1,111 +1,38 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Evaluasi Perkembangan Anak</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      padding: 2rem;
-      background-color: #f5f7fa;
-    }
-    label, p, h3, h4 {
-      font-size: 1.6rem;
-    }
-    select, textarea {
-      font-size: 1.4rem;
-      padding: 0.8rem;
-      margin-top: 1rem;
-      width: 100%;
-      box-sizing: border-box;
-    }
-    .btn-submit, .btn {
-      display: inline-block;
-      background-color: #38b6ff;
-      color: white;
-      padding: 1.2rem 2.4rem;
-      border-radius: 12px;
-      font-size: 1.6rem;
-      font-weight: bold;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      margin-top: 2rem;
-    }
-    .btn:hover {
-      background-color: #2597d5;
-    }
-    .question {
-      margin-top: 2rem;
-    }
-    .footer {
-      margin-top: 4rem;
-      font-size: 1.4rem;
-      text-align: center;
-    }
-    .consultation-link {
-      text-align: center;
-      margin-top: 2rem;
-    }
-    .recommendation {
-      margin-top: 2rem;
-      background-color: #fff3cd;
-      padding: 2rem;
-      border-left: 6px solid #ffcc00;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <title>Evaluasi Tumbuh Kembang</title>
 </head>
 <body>
 
-  <h3>📋 Evaluasi Perkembangan Anak</h3>
-
-  <label for="age">Pilih usia anak:</label>
+  <!-- Konten HTML -->
+  <h2>Evaluasi Tumbuh Kembang Anak</h2>
+  <label for="age">Usia Anak:</label>
   <select id="age" onchange="loadQuestions()">
-    <option value="">-- Pilih Usia --</option>
-    <option value="2">2 Tahun</option>
-    <option value="3">3 Tahun</option>
-    <option value="4">4 Tahun</option>
-    <option value="5">5 Tahun</option>
-    <option value="6">6 Tahun</option>
-    <option value="7">7 Tahun</option>
+    <option value="">Pilih usia</option>
+    <option value="2">2 tahun</option>
+    <option value="3">3 tahun</option>
+    <option value="4">4 tahun</option>
+    <option value="5">5 tahun</option>
+    <option value="6">6 tahun</option>
+    <option value="7">7 tahun</option>
   </select>
 
   <div id="questions"></div>
+  <label><input type="checkbox" id="noneAbility" /> Anak belum bisa semua</label>
+  <button onclick="submitForm()">Kirim</button>
 
-  <div class="question">
-    <label>
-      <input type="checkbox" id="noneAbility">
-      Saya rasa anak saya belum memiliki semua kemampuan ini
-    </label>
-  </div>
-
-  <button class="btn-submit" onclick="submitForm()">Lihat Hasil</button>
-
-  <div id="result" style="display:none; margin-top:2rem">
-    <h4>Hasil Evaluasi:</h4>
+  <div id="result" style="display:none;">
     <p id="result-text"></p>
   </div>
 
-  <div class="recommendation" id="recommendation-box" style="display:none;">
-    <h4>Penting untuk diperhatikan:</h4>
-    <p>
-      Jika anak belum mencapai tahapan yang diharapkan pada usia ini, disarankan untuk mengamati lebih lanjut perkembangan anak. 
-      Ini bisa menjadi tanda bahwa anak memerlukan lebih banyak <strong>stimulasi</strong> atau <strong>intervensi</strong>. 
-      Kami menyarankan untuk berdiskusi langsung dengan <strong>konsultan tumbuh kembang</strong> agar bisa disesuaikan dengan kondisi unik anakmu.
-    </p>
-    <label for="comment">Tuliskan pengamatan atau komentar tentang anak Anda:</label>
-    <textarea id="comment" class="comment-box" rows="4" placeholder="Masukkan komentar atau pengamatan Anda di sini..."></textarea>
+  <div id="recommendation-box" style="display:none;">
+    <p>💡 Yuk konsultasi langsung via WhatsApp untuk stimulasi harian yang cocok:</p>
+    <a href="https://wa.me/6281234567890" target="_blank">🔍 Konsultasi Sekarang</a>
   </div>
 
-  <div class="footer">
-    💬 Semua tes kami gratis dan bisa langsung diisi. Kalau kamu ingin panduan harian berdasarkan hasil anakmu — kami siap bantu lewat konsultasi.
-  </div>
-
-  <div class="consultation-link">
-    <a class="btn" href="https://wa.me/6289663877770" target="_blank">💬 Konsultasi Langsung via WhatsApp</a>
-  </div>
-
+  <!-- Semua kode JS disimpan DI SINI -->
   <script>
     const questionsData = {
       2: [
@@ -120,30 +47,7 @@
         { question: "Anak bisa menggambar bentuk sederhana (misalnya lingkaran)?", id: "q3" },
         { question: "Anak bisa mengucapkan kalimat 3-4 kata?", id: "q4" },
       ],
-      4: [
-        { question: "Anak dapat menyelesaikan puzzle dengan 10-12 potongan?", id: "q1" },
-        { question: "Anak bisa menyebutkan nama benda dalam gambar?", id: "q2" },
-        { question: "Anak dapat menggambar bentuk lebih rumit (misalnya rumah)?", id: "q3" },
-        { question: "Anak dapat berbicara dengan kalimat 4-5 kata?", id: "q4" },
-      ],
-      5: [
-        { question: "Anak dapat menyelesaikan puzzle dengan 15-20 potongan?", id: "q1" },
-        { question: "Anak bisa mengurutkan benda berdasarkan warna, bentuk, atau ukuran?", id: "q2" },
-        { question: "Anak dapat menggambar benda dengan proporsi (misalnya manusia dengan kepala, badan, tangan)?", id: "q3" },
-        { question: "Anak dapat berbicara dengan kalimat yang jelas dan runtut?", id: "q4" },
-      ],
-      6: [
-        { question: "Anak dapat menyelesaikan puzzle dengan 20 potongan?", id: "q1" },
-        { question: "Anak dapat menggambar benda dengan detail (misalnya pohon, rumah)?", id: "q2" },
-        { question: "Anak dapat mengenali dan menyebutkan beberapa kata yang lebih kompleks?", id: "q3" },
-        { question: "Anak dapat berbicara dalam kalimat panjang yang memiliki struktur?", id: "q4" },
-      ],
-      7: [
-        { question: "Anak dapat menyelesaikan puzzle dengan lebih dari 20 potongan?", id: "q1" },
-        { question: "Anak dapat mengenali dan membaca beberapa kata sederhana?", id: "q2" },
-        { question: "Anak dapat menggambar dengan proporsi lebih baik dan detail?", id: "q3" },
-        { question: "Anak dapat berbicara dalam kalimat panjang dan lebih kompleks?", id: "q4" },
-      ]
+      // Tambahkan data lain sesuai usia
     };
 
     function loadQuestions() {
@@ -151,15 +55,23 @@
       const questionsContainer = document.getElementById("questions");
       questionsContainer.innerHTML = '';
       const questions = questionsData[age];
+      if (!questions) return;
+
       questions.forEach(q => {
         const div = document.createElement("div");
         div.classList.add("question");
-        div.innerHTML = `<label><input type="checkbox" id="${q.id}"> ${q.question}</label>`;
+        div.innerHTML = `
+          <label>
+            <input type="checkbox" id="${q.id}" />
+            ${q.question}
+          </label>
+        `;
         questionsContainer.appendChild(div);
       });
+
       document.getElementById("result").style.display = "none";
       document.getElementById("recommendation-box").style.display = "none";
-      document.getElementById("comment").value = "";
+      document.getElementById("noneAbility").checked = false;
     }
 
     function submitForm() {
@@ -168,15 +80,18 @@
       let score = 0;
       const totalQuestions = questions.length;
       const missedSkills = document.getElementById("noneAbility").checked;
+
       questions.forEach(q => {
         if (document.getElementById(q.id).checked) {
           score++;
         }
       });
+
       const percentage = (score / totalQuestions) * 100;
       let resultText = "";
       const resultBox = document.getElementById("result");
       const recommendationBox = document.getElementById("recommendation-box");
+
       if (missedSkills) {
         resultText = "Perkembangan anak mungkin belum mencakup semua kemampuan yang diharapkan pada usia ini.";
         recommendationBox.style.display = "block";
@@ -190,6 +105,7 @@
         resultText = "Perkembangan anak lebih cepat dari usia mereka.";
         recommendationBox.style.display = "none";
       }
+
       document.getElementById("result-text").textContent = resultText;
       resultBox.style.display = "block";
     }
