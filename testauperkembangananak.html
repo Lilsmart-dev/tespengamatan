@@ -1,202 +1,109 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🌿 Temani Tumbuh - Tes Pengamatan Perkembangan Anak</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evaluasi Perkembangan Anak</title>
   <style>
-    :root {
-      font-size: 62.5%;
-    }
-
     body {
       font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f8f9fa;
-      color: #333;
+      padding: 2rem;
+      background-color: #f5f7fa;
+    }
+    label, p, h3, h4 {
       font-size: 1.6rem;
     }
-
-    header {
-      background-color: #e3f6f5;
-      padding: 4rem 2rem;
-      text-align: center;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 3.6rem;
-    }
-
-    header p {
-      font-size: 2rem;
-      max-width: 900px;
-      margin: 2rem auto 0;
-    }
-
-    .container {
-      padding: 4rem 2rem;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    h2 {
-      font-size: 2.4rem;
-      margin-bottom: 2rem;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 2rem;
-      font-size: 1.8rem;
-    }
-
     select, textarea {
-      font-size: 1.8rem;
-      padding: 1rem;
-      border-radius: 8px;
-      border: 1px solid #ccc;
+      font-size: 1.4rem;
+      padding: 0.8rem;
+      margin-top: 1rem;
       width: 100%;
-      max-width: 400px;
       box-sizing: border-box;
     }
-
-    .btn-submit {
-      margin-top: 3rem;
-      width: 100%;
-      padding: 2rem;
-      font-size: 1.8rem;
-      background-color: #38b6ff;
-      color: white;
-      border: none;
-      border-radius: 16px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .btn-submit:hover {
-      background-color: #2597d5;
-    }
-
-    .result, .recommendation {
-      margin-top: 4rem;
-      padding: 4rem;
-      border-radius: 24px;
-      font-size: 1.8rem;
-    }
-
-    .result {
-      background: #e6f7ff;
-      border-left: 10px solid #38b6ff;
-    }
-
-    .recommendation {
-      background: #fff8e1;
-      border-left: 10px solid #ffc107;
-    }
-
-    .footer {
-      margin-top: 4rem;
-      text-align: center;
-      font-style: italic;
-      font-size: 1.6rem;
-      color: #666;
-    }
-
-    .consultation-link {
-      text-align: center;
-      margin-top: 3rem;
-    }
-
-    .consultation-link .btn {
+    .btn-submit, .btn {
       display: inline-block;
       background-color: #38b6ff;
       color: white;
-      padding: 1.5rem 3rem;
-      border-radius: 16px;
-      font-size: 1.8rem;
+      padding: 1.2rem 2.4rem;
+      border-radius: 12px;
+      font-size: 1.6rem;
       font-weight: bold;
       text-decoration: none;
       border: none;
       cursor: pointer;
+      margin-top: 2rem;
     }
-
-    .consultation-link .btn:hover {
+    .btn:hover {
       background-color: #2597d5;
     }
-
-    @media (max-width: 480px) {
-      header h1 {
-        font-size: 2.8rem;
-      }
-      header p,
-      label,
-      select,
-      textarea,
-      .btn-submit,
-      .result,
-      .recommendation,
-      .consultation-link .btn {
-        font-size: 1.6rem;
-      }
+    .question {
+      margin-top: 2rem;
+    }
+    .footer {
+      margin-top: 4rem;
+      font-size: 1.4rem;
+      text-align: center;
+    }
+    .consultation-link {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .recommendation {
+      margin-top: 2rem;
+      background-color: #fff3cd;
+      padding: 2rem;
+      border-left: 6px solid #ffcc00;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>🌿 Temani Tumbuh - Tes Pengamatan Perkembangan Anak</h1>
-    <p>Gunakan tes ini untuk mengamati apakah perkembangan anak Anda sesuai dengan tahapan usianya atau mengalami keterlambatan.</p>
-  </header>
 
-  <div class="container">
-    <h2>Masukkan Usia Anak</h2>
-    <div class="question">
-      <label for="age">Usia Anak:</label>
-      <select id="age" onchange="loadQuestions()">
-        <option value="2">2 Tahun</option>
-        <option value="3">3 Tahun</option>
-        <option value="4">4 Tahun</option>
-        <option value="5">5 Tahun</option>
-        <option value="6">6 Tahun</option>
-        <option value="7">7 Tahun</option>
-      </select>
-    </div>
+  <h3>📋 Evaluasi Perkembangan Anak</h3>
 
-    <div id="questions"></div>
+  <label for="age">Pilih usia anak:</label>
+  <select id="age" onchange="loadQuestions()">
+    <option value="">-- Pilih Usia --</option>
+    <option value="2">2 Tahun</option>
+    <option value="3">3 Tahun</option>
+    <option value="4">4 Tahun</option>
+    <option value="5">5 Tahun</option>
+    <option value="6">6 Tahun</option>
+    <option value="7">7 Tahun</option>
+  </select>
 
-    <div class="question">
-      <label for="noneAbility">
-        <input type="checkbox" id="noneAbility">
-        Anak tidak memiliki semua kemampuan di atas
-      </label>
-    </div>
+  <div id="questions"></div>
 
-    <button class="btn-submit" onclick="submitForm()">Kirim Pengamatan</button>
+  <div class="question">
+    <label>
+      <input type="checkbox" id="noneAbility">
+      Saya rasa anak saya belum memiliki semua kemampuan ini
+    </label>
+  </div>
 
-    <div class="result" id="result" style="display:none;">
-      <h3>Kesimpulan Pengamatan:</h3>
-      <p id="result-text"></p>
-    </div>
+  <button class="btn-submit" onclick="submitForm()">Lihat Hasil</button>
 
-    <div class="recommendation" id="recommendation-box" style="display:none;">
-      <h4>🔍 Penting untuk Diperhatikan:</h4>
-      <p>
-        Jika anak belum mencapai tahapan yang diharapkan pada usia ini, jangan khawatir. Bisa jadi anak hanya butuh lebih banyak 
-        <strong>stimulasi</strong> atau <strong>pendampingan yang konsisten</strong>. 
-        Kamu bisa berkonsultasi langsung untuk dapat arahan aktivitas yang sesuai dengan kebutuhan unik anakmu.
-      </p>
-      <label for="comment">📝 Catatan atau Pengamatan Tentang Anak Anda:</label>
-      <textarea id="comment" class="comment-box" rows="4" placeholder="Tulis pengamatan atau hal-hal yang ingin ditanyakan di sini..."></textarea>
-    </div>
+  <div id="result" style="display:none; margin-top:2rem">
+    <h4>Hasil Evaluasi:</h4>
+    <p id="result-text"></p>
+  </div>
 
-    <div class="footer">
-      💬 Semua tes kami gratis dan bisa langsung kamu isi. Tapi kalau kamu ingin bantuan menyusun rencana harian — kami siap bantu lewat konsultasi.
-    </div>
+  <div class="recommendation" id="recommendation-box" style="display:none;">
+    <h4>Penting untuk diperhatikan:</h4>
+    <p>
+      Jika anak belum mencapai tahapan yang diharapkan pada usia ini, disarankan untuk mengamati lebih lanjut perkembangan anak. 
+      Ini bisa menjadi tanda bahwa anak memerlukan lebih banyak <strong>stimulasi</strong> atau <strong>intervensi</strong>. 
+      Kami menyarankan untuk berdiskusi langsung dengan <strong>konsultan tumbuh kembang</strong> agar bisa disesuaikan dengan kondisi unik anakmu.
+    </p>
+    <label for="comment">Tuliskan pengamatan atau komentar tentang anak Anda:</label>
+    <textarea id="comment" class="comment-box" rows="4" placeholder="Masukkan komentar atau pengamatan Anda di sini..."></textarea>
+  </div>
 
-    <div class="consultation-link">
-      <a class="btn" href="https://wa.me/6289663877770" target="_blank">💬 Konsultasi Langsung via WhatsApp</a>
-    </div>
+  <div class="footer">
+    💬 Semua tes kami gratis dan bisa langsung diisi. Kalau kamu ingin panduan harian berdasarkan hasil anakmu — kami siap bantu lewat konsultasi.
+  </div>
+
+  <div class="consultation-link">
+    <a class="btn" href="https://wa.me/6289663877770" target="_blank">💬 Konsultasi Langsung via WhatsApp</a>
   </div>
 
   <script>
@@ -244,16 +151,12 @@
       const questionsContainer = document.getElementById("questions");
       questionsContainer.innerHTML = '';
       const questions = questionsData[age];
-
       questions.forEach(q => {
         const div = document.createElement("div");
         div.classList.add("question");
-        div.innerHTML = `
-          <label><input type="checkbox" id="${q.id}"> ${q.question}</label>
-        `;
+        div.innerHTML = `<label><input type="checkbox" id="${q.id}"> ${q.question}</label>`;
         questionsContainer.appendChild(div);
       });
-
       document.getElementById("result").style.display = "none";
       document.getElementById("recommendation-box").style.display = "none";
       document.getElementById("comment").value = "";
@@ -265,18 +168,15 @@
       let score = 0;
       const totalQuestions = questions.length;
       const missedSkills = document.getElementById("noneAbility").checked;
-
       questions.forEach(q => {
         if (document.getElementById(q.id).checked) {
           score++;
         }
       });
-
       const percentage = (score / totalQuestions) * 100;
       let resultText = "";
       const resultBox = document.getElementById("result");
       const recommendationBox = document.getElementById("recommendation-box");
-
       if (missedSkills) {
         resultText = "Perkembangan anak mungkin belum mencakup semua kemampuan yang diharapkan pada usia ini.";
         recommendationBox.style.display = "block";
@@ -290,7 +190,6 @@
         resultText = "Perkembangan anak lebih cepat dari usia mereka.";
         recommendationBox.style.display = "none";
       }
-
       document.getElementById("result-text").textContent = resultText;
       resultBox.style.display = "block";
     }
